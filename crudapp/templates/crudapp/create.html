@@ -1,0 +1,48 @@
+{% extends 'crudapp/base.html' %}
+{% block content %}
+<style>
+    .errorlist {
+        list-style-type: none;
+        color: red;
+        font-size: 10px;
+        margin: 0;
+        padding: 0;
+    }
+</style>
+
+<h1 class="text-center alert alert-info"> Student Registration form</h1>
+
+<div class="container"> 
+    <div clas="row align-items-center">
+        <div class="col-6 offset-3">
+<!-- <form method="POST" action="">
+{% csrf_token  %} 
+{{fm.as_p}}
+
+<input type="submit" class="btn btn-success"> 
+<a href="{% url 'show' %}" class=" btn btn-success"> Back to main page</a>
+</form> -->
+
+        <!-- to show error all error -->
+
+        <form action="" method="post" novalidate>
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+            <span class='errorlist'>{{error}}</span>
+            {% endfor %}
+            {% endif %}
+            <br>
+            {% for fm in form %}
+            {{fm.label_tag}} {{fm}} <span class='errorlist'>{{fm.errors|striptags}}</span> <br>
+            {% endfor %}
+
+
+            <input type="submit" class="btn btn-success"> 
+            <a href="{% url 'show' %}" class=" btn btn-success"> Back to main page</a>
+        </form>
+
+</div>
+</div>
+</div>
+{% endblock content %}
